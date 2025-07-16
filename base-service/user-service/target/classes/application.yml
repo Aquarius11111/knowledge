@@ -1,0 +1,103 @@
+server:
+  port: 8081
+
+jwt:
+  secret-path: secret/jwt-secret.txt   # 存储当前密钥的路径
+  old-secret-path: secret/old-secret.txt # 存储旧密钥
+  expiration-minutes: 60              # token过期时间（分钟）
+#  refresh-interval-minutes: 1440      # 秘钥更新周期（默认 24 小时）
+  refresh-interval-minutes: 100      # 秘钥更新周期（默认 24 小时）
+
+spring:
+  task:
+    scheduling:
+      pool:
+        size: 1
+  config:
+    import: optional:nacos:application.yml
+  application:
+    name: user-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3307/micro-service
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: public
+        group: DEFAULT_GROUP
+        ip: 127.0.0.1
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: public
+        group: DEFAULT_GROUP
+        file-extension: yml
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8858
+        port: 8719
+      datasource:
+        ds:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            dataId: sentinel-rules
+            groupId: DEFAULT_GROUP
+            rule-type: flow
+
+# MyBatis-Plus配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# 分页
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+# Seata配置 - 暂时注释掉，待需要时恢复
+# seata:
+#   tx-service-group: my_test_tx_group
+#   service:
+#     vgroup-mapping:
+#       my_test_tx_group: default
+#     grouplist:
+#       default: 127.0.0.1:8091
+#   registry:
+#     type: nacos
+#     nacos:
+#       server-addr: localhost:8848
+#       namespace: public
+#       group: SEATA_GROUP
+#   config:
+#     type: nacos
+#     nacos:
+#       server-addr: localhost:8848
+#       namespace: public
+#       group: SEATA_GROUP
+#   enable-auto-data-source-proxy: true
+
+# 日志配置
+logging:
+  level:
+    com.example.user: debug 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" 

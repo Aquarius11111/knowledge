@@ -1,0 +1,80 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    import: optional:nacos:application.yml
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      discovery:
+        ip: 127.0.0.1
+        server-addr: 127.0.0.1:8848
+        namespace: public
+        group: DEFAULT_GROUP
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: public
+        group: DEFAULT_GROUP
+        file-extension: yml
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        # 基础接口路由
+        - id: web-service
+          uri: lb://user-service
+          predicates:
+            - Path=/login,/register,/updatePassword
+          filters:
+            - StripPrefix=0
+
+        # 用户服务路由
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=0
+            
+
+        # 管理员服务路由
+        - id: admin-service
+          uri: lb://user-service
+          predicates:
+            - Path=/admin/**
+          filters:
+            - StripPrefix=0
+            
+
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8858
+        port: 8718
+      datasource:
+        ds:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            dataId: gateway-sentinel-rules
+            groupId: DEFAULT_GROUP
+            rule-type: gw-flow
+      scg:
+        fallback:
+          mode: response
+          response-status: 429
+          response-body: {"code":"429","msg":"服务繁忙，请稍后重试"}
+
+# 日志配置
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+    com.example.gateway: debug 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" 
