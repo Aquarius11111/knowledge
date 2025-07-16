@@ -11,9 +11,12 @@ import com.example.domain.User;
 import com.example.user.config.TokenUtils;
 import com.example.user.service.AdminService;
 import com.example.user.service.UserService;
+import com.example.user.utils.UsernameGenerator;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Random;
 
 /**
  * 基础前端接口
@@ -76,6 +79,7 @@ public class WebController {
     @PostMapping("/register")
     public R register(@RequestBody Account account) {
         if (StrUtil.isBlank(account.getEmail()) || StrUtil.isBlank(account.getPassword())
+                || StrUtil.isBlank(account.getAccount())
                 || ObjectUtil.isEmpty(account.getRole())) {
             return R.error(ResultCodeEnum.PARAM_LOST_ERROR);
         }
@@ -86,6 +90,7 @@ public class WebController {
             Admin admin = new Admin();
             admin.setAccount(account.getAccount());
             admin.setEmail(account.getEmail());
+            admin.setUsername(UsernameGenerator.generateUsername());
             admin.setPassword(account.getPassword());
             admin.setRole(account.getRole());
             adminService.save(admin);
@@ -97,8 +102,10 @@ public class WebController {
             User user = new User();
             user.setAccount(account.getAccount());
             user.setPassword(account.getPassword());
+            user.setUsername(UsernameGenerator.generateUsername());
             user.setEmail(account.getEmail());
             user.setRole(account.getRole());
+            user.setStatus(true);
             userService.save(user);
         }
         return R.success();
