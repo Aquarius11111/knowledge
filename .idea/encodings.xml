@@ -3,6 +3,7 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/base-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base-service-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-service/category-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base-service/gateway-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base-service/service-category/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base-service/service-product/src/main/java" charset="UTF-8" />
