@@ -1,6 +1,7 @@
 package com.example.user.controller;
 
 import com.example.common.R;
+import com.example.common.enums.ResultCodeEnum;
 import com.example.domain.User;
 import com.example.user.service.UserService;
 import com.github.pagehelper.PageInfo;
@@ -27,6 +28,9 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public R add(@RequestBody User user) {
+        if(userService.getByAccount(user.getAccount())!=null){
+            return R.error(ResultCodeEnum.USER_EXIST_ERROR);
+        }
         userService.save(user);
         return R.success();
     }

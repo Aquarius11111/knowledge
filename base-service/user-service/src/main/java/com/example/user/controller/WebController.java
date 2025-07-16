@@ -8,15 +8,12 @@ import com.example.common.enums.RoleEnum;
 import com.example.domain.Account;
 import com.example.domain.Admin;
 import com.example.domain.User;
-import com.example.user.config.TokenUtils;
+import com.example.utils.TokenUtils;
 import com.example.user.service.AdminService;
 import com.example.user.service.UserService;
 import com.example.user.utils.UsernameGenerator;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Random;
 
 /**
  * 基础前端接口
@@ -28,7 +25,7 @@ public class WebController {
     private AdminService adminService;
     @Resource
     private UserService userService;
-    @Autowired
+    @Resource
     private TokenUtils tokenUtils;
 
 

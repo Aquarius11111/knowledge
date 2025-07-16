@@ -2,9 +2,10 @@ package com.example.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.example.gateway", "com.example.utils"},exclude = {DataSourceAutoConfiguration.class})
+//@SpringBootApplication
 @EnableDiscoveryClient
 public class GatewayServiceApplication {
 

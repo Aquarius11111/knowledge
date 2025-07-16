@@ -1,4 +1,4 @@
-package com.example.user.config;
+package com.example.utils;
 
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
@@ -47,7 +47,7 @@ public class JwtKeyConfig {
     }
 
     // 定期更新秘钥（单位毫秒）
-    @Scheduled(fixedRateString = "${jwt.refresh-interval-minutes}000")
+    @Scheduled(fixedRateString = "${jwt.refresh-interval-minutes}000000")
     public void rotateSecret() throws IOException {
         // 将旧秘钥保存
         Files.writeString(new File(oldSecretPath).toPath(), currentSecret);

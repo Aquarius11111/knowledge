@@ -3,7 +3,7 @@ package com.example.user.config.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.example.user.config.TokenUtils;
+import com.example.utils.TokenUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

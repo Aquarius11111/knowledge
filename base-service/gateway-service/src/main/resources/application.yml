@@ -1,6 +1,12 @@
 server:
   port: 8080
 
+jwt:
+  secret-path: secret/jwt-secret.txt   # 存储当前密钥的路径
+  old-secret-path: secret/old-secret.txt # 存储旧密钥
+  expiration-minutes: 60              # token过期时间（分钟）
+  refresh-interval-minutes: 1440      # 秘钥更新周期（默认 24 小时）
+
 spring:
   config:
     import: optional:nacos:application.yml

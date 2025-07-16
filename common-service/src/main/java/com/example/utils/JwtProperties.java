@@ -1,4 +1,4 @@
-package com.example.user.config;
+package com.example.utils;
 
 
 import lombok.Data;

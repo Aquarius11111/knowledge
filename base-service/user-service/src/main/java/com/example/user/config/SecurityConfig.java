@@ -1,7 +1,6 @@
 package com.example.user.config;
 
 import com.example.user.config.filter.JwtAuthenticationFilter;
-import com.example.user.config.filter.JwtAuthenticationFilter;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
