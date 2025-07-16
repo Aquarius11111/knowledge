@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common-service" />
         <module name="user-service" />
+        <module name="category-service" />
         <module name="service-product" />
         <module name="service-user" />
         <module name="gateway-service" />
@@ -35,6 +36,7 @@
       <module name="base-common" options="-parameters" />
       <module name="base-service" options="" />
       <module name="base-service-common" options="-parameters" />
+      <module name="category-service" options="-parameters" />
       <module name="common-service" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
