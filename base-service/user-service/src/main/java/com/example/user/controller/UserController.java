@@ -5,6 +5,7 @@ import com.example.domain.User;
 import com.example.user.service.UserService;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,6 +24,7 @@ public class UserController {
     /**
      * 新增
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public R add(@RequestBody User user) {
         userService.save(user);
@@ -41,6 +43,7 @@ public class UserController {
     /**
      * 批量删除
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/batch")
     public R deleteBatch(@RequestBody List<String> accounts) {
         userService.removeBatchByAccounts(accounts);
@@ -50,6 +53,7 @@ public class UserController {
     /**
      * 修改
      */
+
     @PutMapping("/update")
     public R updateByAccount(@RequestBody User user) {
         userService.updateByAccount(user);
