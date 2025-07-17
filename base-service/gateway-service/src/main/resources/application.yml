@@ -63,11 +63,19 @@ spring:
           filters:
             - StripPrefix=0
 
-        # 收藏夹服务路由
+        # 分类服务路由
         - id: category-service
           uri: lb://category-service
           predicates:
             - Path=/category/**
+          filters:
+            - StripPrefix=0
+        
+        # 文档服务路由
+        - id: document-service
+          uri: lb://document-service
+          predicates:
+            - Path=/document/**
           filters:
             - StripPrefix=0
 
