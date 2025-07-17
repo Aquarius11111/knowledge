@@ -3,7 +3,6 @@ package com.example.user.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.domain.Admin;
-import com.example.domain.User;
 import com.example.mapper.AdminMapper;
 import com.example.user.service.AdminService;
 import com.github.pagehelper.PageHelper;
@@ -11,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +20,12 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Resource
     private AdminMapper adminMapper;
+
+    @Transactional
+    @Override
+    public boolean saveAdmin(Admin admin){
+        return this.save(admin);
+    }
 
     @Override
     public List<Admin> selectAll(Admin admin) {
@@ -47,6 +53,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         return adminMapper.selectOne(queryWrapper);
     }
 
+    @Transactional
     @Override
     public boolean updateByAccount(Admin admin) {
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
@@ -56,6 +63,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         return this.update(admin, queryWrapper);
     }
 
+    @Transactional
     @Override
     public boolean  removeByAccount(String account) {
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();

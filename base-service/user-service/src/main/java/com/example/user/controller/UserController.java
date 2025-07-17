@@ -31,7 +31,7 @@ public class UserController {
         if(userService.getByAccount(user.getAccount())!=null){
             return R.error(ResultCodeEnum.USER_EXIST_ERROR);
         }
-        userService.save(user);
+        userService.saveUser(user);
         return R.success();
     }
 

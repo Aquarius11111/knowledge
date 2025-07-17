@@ -34,7 +34,7 @@ spring:
         - id: web-service
           uri: lb://user-service
           predicates:
-            - Path=/login,/register,/updatePassword
+            - Path=/login,/register,/updatePassword,/forgot
           filters:
             - StripPrefix=0
 
@@ -45,7 +45,7 @@ spring:
             - Path=/user/**
           filters:
             - StripPrefix=0
-            
+
 
         # 管理员服务路由
         - id: admin-service
@@ -54,6 +54,23 @@ spring:
             - Path=/admin/**
           filters:
             - StripPrefix=0
+
+        # 收藏夹服务路由
+        - id: folder-service
+          uri: lb://folder-service
+          predicates:
+            - Path=/favorite/**
+          filters:
+            - StripPrefix=0
+
+        # 收藏夹服务路由
+        - id: category-service
+          uri: lb://category-service
+          predicates:
+            - Path=/category/**
+          filters:
+            - StripPrefix=0
+
             
 
     sentinel:

@@ -6,21 +6,21 @@
 
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>base-service</artifactId>
+        <artifactId>documents-microservice</artifactId>
         <version>1.0.0</version>
     </parent>
 
     <artifactId>gateway-service</artifactId>
-<!--    <packaging>jar</packaging>-->
+    <!--    <packaging>jar</packaging>-->
 
     <dependencies>
-        
+
         <!-- Spring Cloud Gateway -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        
+
         <!-- Sentinel Nacos 数据源 -->
         <dependency>
             <groupId>com.alibaba.csp</groupId>
@@ -76,29 +76,11 @@
             <version>5.8.18</version>
         </dependency>
 
-        <!-- security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
-        </dependency>
-
         <!-- JWT -->
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>4.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>common-service</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -108,7 +90,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-<!--                    <fork>true</fork>-->
+                    <!--                    <fork>true</fork>-->
                 </configuration>
             </plugin>
         </plugins>

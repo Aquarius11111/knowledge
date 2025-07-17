@@ -23,6 +23,7 @@ public class Admin {
     private String password;
     private String email;
     private String phone;
+    private String sex;
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createtime;
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")

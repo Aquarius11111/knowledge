@@ -12,6 +12,8 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -20,6 +22,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Resource
     private UserMapper userMapper;
 
+    @Transactional
+    @Override
+    public boolean saveUser(User user){
+        return this.save(user);
+    }
     @Override
     public List<User> selectAll(User user) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -46,6 +53,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return userMapper.selectOne(queryWrapper);
     }
 
+    @Transactional
     @Override
     public boolean updateByAccount(User user){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -61,6 +69,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return userMapper.selectOne(queryWrapper);
     }
 
+    @Transactional
     @Override
     public boolean removeByAccount(String account) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -68,6 +77,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return userMapper.delete(queryWrapper) > 0;
     }
 
+    @Transactional
     @Override
     public boolean removeBatchByAccounts(List<String> accounts) {
         if (accounts == null || accounts.isEmpty()) {

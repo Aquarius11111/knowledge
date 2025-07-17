@@ -1,5 +1,6 @@
 package com.example.user.config;
 
+import org.springframework.security.config.Customizer;
 import com.example.user.config.filter.JwtAuthenticationFilter;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
@@ -22,16 +23,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configure(http))  // 开启 CORS 支持
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 new AntPathRequestMatcher("/login"),
-                                new AntPathRequestMatcher("/register")
+                                new AntPathRequestMatcher("/register"),
+                                new AntPathRequestMatcher("/forgot")
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .csrf(csrf -> csrf.disable());
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

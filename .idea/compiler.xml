@@ -7,13 +7,28 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="category-service" />
-        <module name="user-service" />
         <module name="common-service" />
+        <module name="category-service" />
+        <module name="service-user" />
         <module name="gateway-service" />
-        <module name="folder-service" />
+        <module name="user-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="base-common" target="17" />
+      <module name="base-service-common" target="17" />
+      <module name="gateway" target="17" />
+      <module name="micro-service-demo" target="17" />
+      <module name="service-category" target="17" />
+      <module name="service-product" target="17" />
+      <module name="service-product (1)" target="17" />
+      <module name="service-product (2)" target="17" />
+      <module name="service-user" target="17" />
+      <module name="service-user (1)" target="17" />
+      <module name="service-user (2)" target="17" />
+      <module name="shopping-mall-microservice" target="20" />
+    </bytecodeTargetLevel>
+>>>>>>> 7b39d1b (更新gateway)
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

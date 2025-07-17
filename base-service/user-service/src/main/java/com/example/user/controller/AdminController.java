@@ -23,7 +23,7 @@ public class AdminController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public R add(@RequestBody Admin admin) {
-        adminService.save(admin);
+        adminService.saveAdmin(admin);
         return R.success();
     }
 
