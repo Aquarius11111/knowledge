@@ -7,50 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common-service" />
         <module name="category-service" />
-        <module name="service-product" />
-        <module name="service-user" />
+        <module name="user-service" />
+        <module name="common-service" />
         <module name="gateway-service" />
         <module name="folder-service" />
-        <module name="user-service" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="base-common" target="17" />
-      <module name="base-service-common" target="17" />
-      <module name="gateway" target="17" />
-      <module name="micro-service-demo" target="17" />
-      <module name="service-category" target="17" />
-      <module name="service-product" target="17" />
-      <module name="service-product (1)" target="17" />
-      <module name="service-product (2)" target="17" />
-      <module name="service-user" target="17" />
-      <module name="service-user (1)" target="17" />
-      <module name="service-user (2)" target="17" />
-      <module name="shopping-mall-microservice" target="20" />
-      <module name="test" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="base-common" options="-parameters" />
-      <module name="base-service" options="" />
-      <module name="base-service-common" options="-parameters" />
       <module name="category-service" options="-parameters" />
       <module name="common-service" options="-parameters" />
       <module name="folder-service" options="-parameters" />
-      <module name="gateway" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
-      <module name="micro-service-demo" options="" />
-      <module name="service-category" options="-parameters" />
-      <module name="service-product" options="-parameters" />
-      <module name="service-product (1)" options="-parameters" />
-      <module name="service-product (2)" options="-parameters" />
-      <module name="service-user" options="-parameters" />
-      <module name="service-user (1)" options="-parameters" />
-      <module name="service-user (2)" options="-parameters" />
-      <module name="test" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>
