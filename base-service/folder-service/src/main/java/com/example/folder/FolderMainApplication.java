@@ -1,4 +1,4 @@
-package com.example.category;
+package com.example.folder;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -12,11 +12,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @SpringBootApplication
 @MapperScan("com.example.mapper")
-public class CategoryMainApplication {
+public class FolderMainApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(CategoryMainApplication.class, args);
+        SpringApplication.run(FolderMainApplication.class, args);
 
     }
 
