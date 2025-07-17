@@ -13,7 +13,6 @@
         <module>gateway-service</module>
         <module>category-service</module>
         <module>folder-service</module>
-        <module>folder-service</module>
     </modules>
 
 
