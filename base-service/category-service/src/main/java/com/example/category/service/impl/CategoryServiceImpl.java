@@ -32,27 +32,31 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     @Override
     @GlobalTransactional
     public R updateCategory(Category category) {
-        if(this.updateById(category)) {
+
             // 级联更新文档
             String ctgName = category.getCtgName();
             R data = documentFeignClient.getDocumentListByCtgName(ctgName);
             List<Document> documentList = (List<Document>) data.getData();
 
-            for(Document document : documentList) {
-                document.setCategory(ctgName);
-                documentFeignClient.updateDocument(document);
+            log.info("获取到文档列表：{}", documentList);
+
+            if(documentList != null && !documentList.isEmpty()) {
+                log.info("开始级联更新文档");
+                for(Document document : documentList) {
+                    document.setCategory(ctgName);
+                    documentFeignClient.updateByDocumentId(document);
+                }
             }
+
+
+            // 更新类别
+            this.updateById(category);
 
             log.info("文档类别更新成功");
             R<Category> result = R.success();
             result.setMsg("文档类别更新成功");
             return result;
-        } else {
-            log.info("文档类别不存在");
-            R<Category> result = R.error();
-            result.setMsg("文档类别不存在");
-            return result;
-        }
+
 
 
     }

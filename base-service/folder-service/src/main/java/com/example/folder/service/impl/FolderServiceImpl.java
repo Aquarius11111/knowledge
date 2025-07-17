@@ -78,4 +78,16 @@ public class FolderServiceImpl extends ServiceImpl<FolderMapper, Folder> impleme
         this.removeById(folder.getId());
 
     }
+
+    @Override
+    public Integer getIdByFolderNameAndAccount(String folderName, String account) {
+        LambdaQueryWrapper<Folder> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Folder::getAccount, account);
+        queryWrapper.eq(Folder::getFolderName, folderName);
+        Folder folder = this.getOne(queryWrapper);
+        if (folder == null) {
+            return null;
+        }
+        return folder.getId();
+    }
 }

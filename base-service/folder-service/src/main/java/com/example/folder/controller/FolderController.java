@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Tag(name = "FolderController:文件夹控制器")
 @RestController
@@ -76,8 +77,17 @@ public class FolderController {
 
     @Operation(summary = "收藏文档")
     @PostMapping("/star")
-    public R<String> favorite(@RequestBody FolderWithDoc folderWithDoc){
-        log.info("收藏文档，folderWithDoc={}", folderWithDoc);
+    public R<String> favorite(@RequestBody Map<String, Object> map){
+        log.info("收藏文档:{}", map);
+        Integer documentId = (Integer) map.get("documentId");
+        String folderName = (String) map.get("folderName");
+        String account = (String) map.get("account");
+
+        Integer folderId = folderService.getIdByFolderNameAndAccount(folderName, account);
+
+        FolderWithDoc folderWithDoc = new FolderWithDoc();
+        folderWithDoc.setDocumentId(documentId);
+        folderWithDoc.setFolderId(folderId);
         folderWithDocService.save(folderWithDoc);
         return R.success("收藏成功");
     }

@@ -12,4 +12,6 @@ public interface FolderService extends IService<Folder> {
     List<Document> getDocumentListByFolderNameAndAccount(String account, String folderName);
 
     void removeByFolderNameAndAccount(String folderName, String account);
+
+    Integer getIdByFolderNameAndAccount(String folderName, String account);
 }

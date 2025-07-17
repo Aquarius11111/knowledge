@@ -135,7 +135,12 @@ public class CategoryController {
          category.setCtgEnabled(ctgDTO.getStatus() == 1);
          log.info("更新文档类别信息:ctgId="+category.getCtgId()+",category="+category);
 
-         return categoryService.updateCategory(category);
+         categoryService.updateById(category);
+         log.info("更新文档类别成功");
+
+         R<Category> result = R.success();
+         result.setMsg("文档类别更新成功");
+         return result;
      }
 
      @Operation(summary = "修改文档类别启用状态")
